@@ -9,12 +9,14 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
+  celo,
   celoAlfajores,
+  baseSepolia
 } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 const { chains, publicClient } = configureChains(
-  [celoAlfajores],
+  [baseSepolia],
   [
     alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMYID }),
     publicProvider(),
@@ -22,7 +24,7 @@ const { chains, publicClient } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "CeloNFTS",
+  appName: "ALPHABLOCKSCERTIFICATE",
   projectId: import.meta.env.VITE_PROJECTID,
   chains
 });

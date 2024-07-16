@@ -37,10 +37,13 @@ function App() {
             const name = lineArray[0].replace(/\s/g, ""); // Remove spaces from the first column
             const student = lineArray[1].trim(); // Trim any extra spaces from the second column
             // You can process or store these values as needed
-            columnArray.push({ student: student, name: name, image: imgUrl, cohort: cohortno, added: false });
+            columnArray.push({ student: student, name: name, image: imgUrl, classOf: cohortno, added: false });
           }
         }
         // Assuming setCsv is defined elsewhere in your code
+        console.log('====================================');
+        console.log(columnArray);
+        console.log('====================================');
         setCohort(columnArray);
         // console.log(columnArray);
       };
@@ -66,7 +69,7 @@ function App() {
           signer
         );
         console.log(cohort);
-        const tx = await contract.addCohort(cohort);
+        const tx = await contract.addClass(cohort);
         //Reset form
         e.target.reset();
         setFormdata({
@@ -87,6 +90,7 @@ function App() {
       );
       const accounts = await walletClient.getAddresses();
       const tx = await contract.mint({ from: accounts[0] });
+      // const tx = await contract.changeOwner("0x0c0281d418D5d0C4838D86B99a73BE5B2d95eD54");
       // const tx = await contract.tokenURI(0);
       // console.log(tx);
     }
