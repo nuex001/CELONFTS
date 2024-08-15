@@ -13,13 +13,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         args: [deployer],
         log: true,
     })
-    // console.log(contract);
     // log("________________________________")
-    // if (
-    //     !developmentChains.includes(network.name) &&
-    //     process.env.CELO_API_KEY
-    // ) {
-    //     await verify(celoNfts.address, [deployer])
-    // }
+    if (
+        !developmentChains.includes(network.name) &&
+        process.env.CELO_API_KEY
+    ) {
+        await verify(celoNfts.address, [deployer])
+    }
 }
 module.exports.tags = ["all"]
